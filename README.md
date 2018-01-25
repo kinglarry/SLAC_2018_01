@@ -12,7 +12,6 @@ And it runs on all platforms Rust supports, including Windows.
 * [What is Rust?](#what-is-rust)
 * [What is WebAssembly?](#what-is-webassembly)
 * [Labs](#labs)
-* [FAQ](#faq)
 
 ## Pre-SLAC
 
@@ -59,7 +58,7 @@ Here are a few tid-bits about `rust`:
 `rust` code is compiled into an executable binary for a target platform using a specified toolchain. This is made possible by both `rustup` and a compiler + toolchain project called `LLVM` (https://llvm.org/). For example, you can develop `rust` on a Windows machine and choose to compile it for a Mac. Or perhaps, as you'll see in this SLAC, we will compile `rust` code into `wasm`, which can run on all three major web browsers. While we won't explore too much today (and frankly, I'm not as knowledgeable about systems programming as I want to be), this is part of what makes coding in `rust` so friendly.
 
 
-### How does rust address variables and memory?  
+#### How does rust address variables and memory?  
 
 When declaring a literal in `rust`, it is declared immutable by default. This is probably the clearest indication I saw of the functional/meta-language aspect of rust.
 
@@ -83,7 +82,7 @@ Other helpful information:
 `rust` enables passing of data by reference (&) through method calls, as an alternative to passing by value (which is what Java does). The `rust` language also supports pointers (which stores the address of data) but typically does not recommend using them (given that they cannot be guaranteed to be safe at compile-time).  
 
 
-### Functions and statements
+#### Functions and statements
 
 The function naming convention appears to be snakecase (all lower case with underscores) and need to be declared with the *fn* declaration, and have a set of parentheses after the function name. Functions can accept parameters, but the parameter type must be declared.
 
@@ -96,12 +95,12 @@ fn hi_function(x: u32) {
 Statements in `rust` do not have return values. So you can't do *let x = (let y = 1);*. This is another example of the functional language aspect of `rust` creeping up...statement don't return values but expressions do.   
 
 
-### Conditionals and loops work as expected
+#### Conditionals and loops work as expected
 
 Conditionals and loops don't have any special behaviors as far as I can tell.
 
 
-### Memory management is a bit confusing to me still
+#### Memory management is a bit confusing to me still
 
 I don't fully appreciate the way `rust` manages memory yet. It doesn't perform run-time garbage collection (so there's no CPU cost which is great), nor does it require the programmer to explicitly de-allocate or allocate memory (so there's no programmer cost which is also great). It seems similar to the C++ concept of Resource Acquisitions Is Initialization (but I'm so rusty on C++ I don't remember this too well).
 
@@ -151,11 +150,27 @@ But to show off the power of this enhancement, the Tanks game (Unity engine) was
 
 ## Labs
 
-#### Hello World
+#### Alert On Meaning of Life
 
-The Hello World lab requires you to create a `rust` "Hello World" project.
+This lab is an alternative to a Hello World. It is really in that a simple `rust` file exists for you in the downloadable "life.zip" file. Here are the instructions.
 
+Download the "life.zip" file from GitHub and unzip it. Use your command prompt to navigate to that folder and follow the instructions below:
 
+```
+$ rustup update nightly
+$ rustup target add wasm32-unknown-unknown --toolchain nightly
+$ rustc +nightly --target wasm32-unknown-unknown -O .\add.rs --crate-type=cdylib
+$ cargo install --git https://github.com/alexcrichton/wasm-gc
+$ wasm-gc .\add.wasm small-add.wasm
+```
+
+After you've followed those instructions, you'll notice another file has been created "small-add.wasm". Now execute your Python server to load up the index.html file:
+
+```
+python -m SimpleHTTPServer
+```
+
+You should see an alert explaining the meaning of life.
 
 
 
