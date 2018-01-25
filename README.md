@@ -164,7 +164,7 @@ After you've followed those instructions, you'll notice another file has been cr
 python -m SimpleHTTPServer
 ```
 
-You should see an alert explaining the meaning of life.
+Open the page on your browser http://localhost:8000/ to check if it works. You should see an alert explaining the meaning of life.
 
 
 
