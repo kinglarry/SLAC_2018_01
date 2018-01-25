@@ -191,7 +191,7 @@ The generated wasm will be copied to the html directory of the installation fold
 python -m SimpleHTTPServer
 ```
 
-Open the page on your browser http://localhost:8000/ to check if it works. Playing Instructions:
+Open the page on your browser http://localhost:8000/html/ to check if it works. Playing Instructions:
 
 Keyboard                | Action
 ----------------------- | ------------
